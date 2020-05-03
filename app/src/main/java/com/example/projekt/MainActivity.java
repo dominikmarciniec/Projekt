@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     SurfaceView surfaceView;
     CameraSource cameraSource;
-    TextView textView;
+    TextView textViewww;
     BarcodeDetector barcodeDetector;
     TextRecognizer textRecognizer;
     String value;
