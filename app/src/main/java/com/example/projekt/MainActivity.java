@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +30,19 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.firebase.firestore.FirebaseFirestore;
+import androidx.annotation.NonNull;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.io.IOException;
 
@@ -42,11 +56,13 @@ public class MainActivity extends AppCompatActivity {
     TextRecognizer textRecognizer;
     String value;
     Handler handler = new Handler();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static final String TAG = "MyActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        surfaceView=(SurfaceView)findViewById(R.id.camerapreview);
+        surfaceView=findViewById(R.id.camerapreview);
 
 
         barcodeDetector=new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.CODE_128|Barcode.QR_CODE).build();
@@ -79,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource = null;;
+                cameraSource = null;
             }
         });
 
@@ -146,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        addData("miasta", "ROGO");
     }
 
 
@@ -188,5 +205,46 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void addData(String kolekcja, String dokument){
+        Map<String, Object> city = new HashMap<>();
+        city.put("name", "Rogoziniec");
+        city.put("woj", "lubuskie");
+        city.put("kraj", "polska");
+
+        db.collection(kolekcja).document(dokument)
+                .set(city)
+                .addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid){
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+
+    }
+
+    public void readData(String kolekcja, String dokument){
+        DocumentReference docRef = db.collection(kolekcja).document(dokument);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()){
+                        Log.d(TAG, "Pobrane dane: " + document.getData());
+                    } else {
+                        Log.d(TAG, "Nie znaleziono danych");
+                    }
+                } else {
+                    Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
+                }
+            }
+        });
+    }
 
 }
