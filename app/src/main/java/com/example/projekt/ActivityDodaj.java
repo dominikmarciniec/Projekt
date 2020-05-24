@@ -34,7 +34,7 @@ public class ActivityDodaj extends Activity {
             public void onClick(View view) {
             nazwa=nazwactivity.getText().toString();
             nadrzedny=nadrzednyactivity.getText().toString();
-            baza.addData(kod, nazwa, nadrzedny);
+            baza.addData(nazwa, kod, nadrzedny);
 
             }
         });
