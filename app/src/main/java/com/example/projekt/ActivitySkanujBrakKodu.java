@@ -3,6 +3,7 @@ package com.example.projekt;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,15 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 public class ActivitySkanujBrakKodu extends Activity {
+    String kod;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skanuj_brakkodu);
-        TextView komunikat = findViewById(R.id.komunikat);
+        TextView komunikat =findViewById(R.id.komunikat);
         Intent intent =getIntent();
+        kod=intent.getStringExtra("value");
 
-
-        komunikat.setText("kod"+intent.getStringExtra("value"));
+        komunikat.setText("kod"+kod);
 
     }
     public void changeActivity(View view) {
@@ -32,6 +34,7 @@ public class ActivitySkanujBrakKodu extends Activity {
 
         }else if(button_text.equals("Dodaj produkt")){
             Intent intent = new Intent(this, ActivityDodaj.class);
+            intent.putExtra("value",kod);
             startActivity(intent);
 
         }

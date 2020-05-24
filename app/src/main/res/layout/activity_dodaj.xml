@@ -9,7 +9,7 @@
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/nazwa"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="35dp"
@@ -20,7 +20,7 @@
         android:text="PlaceHolder3" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/kod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -34,10 +34,10 @@
         android:text="PlaceHolder1" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/nazwa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/kod"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="35dp"
@@ -89,7 +89,7 @@
         android:text="PlaceHolder5" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/dodaj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
