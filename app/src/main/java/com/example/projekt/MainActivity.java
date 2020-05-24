@@ -1,6 +1,7 @@
 package com.example.projekt;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -16,6 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -26,24 +31,26 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
-import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private CameraSource cameraSource;
-
-    private String value;
-    private final Handler handler = new Handler();
+    SurfaceView surfaceView;
+    CameraSource cameraSource;
+    TextView textView;
+    BarcodeDetector barcodeDetector;
+    TextRecognizer textRecognizer;
+    String value;
+    Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SurfaceView surfaceView = findViewById(R.id.camerapreview);
+        surfaceView=(SurfaceView)findViewById(R.id.camerapreview);
 
 
-        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.CODE_128 | Barcode.QR_CODE).build();
-        TextRecognizer textRecognizer = new TextRecognizer.Builder(this).build();
+        barcodeDetector=new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.CODE_128|Barcode.QR_CODE).build();
+        textRecognizer = new TextRecognizer.Builder(this).build();
 
         MultiDetector multiDetector = new MultiDetector.Builder()
                 .add(barcodeDetector)
@@ -72,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource = null;
+                cameraSource = null;;
             }
         });
 
@@ -93,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Vibrator vibrator=(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                            Objects.requireNonNull(vibrator).vibrate(1000);
-                            cameraSource.stop();
+                            vibrator.vibrate(1000);
                             value=qrCodes.valueAt(0).displayValue;
                             changeActivity(value);
                         }
@@ -132,8 +138,7 @@ public class MainActivity extends AppCompatActivity {
                             String number = stringBuilder.toString().replaceAll("\\D+","");
                             if(number.matches("^[0-9]{3,12}$")){
                                 Vibrator vibrator=(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                                Objects.requireNonNull(vibrator).vibrate(1000);
-                                cameraSource.stop();
+                                vibrator.vibrate(1000);
                                 changeActivity(number);
                             }
                         }
@@ -144,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void changeActivity(String value) {
+    public void changeActivity(String value) {
 
             Intent intent = new Intent(this, ActivitySkanujBrakKodu.class);
             intent.putExtra("value",value);
