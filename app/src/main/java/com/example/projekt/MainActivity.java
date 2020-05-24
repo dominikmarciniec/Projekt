@@ -1,7 +1,6 @@
 package com.example.projekt;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -11,16 +10,12 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.vision.CameraSource;
@@ -28,21 +23,7 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
-import com.google.firebase.firestore.FirebaseFirestore;
-import androidx.annotation.NonNull;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import java.util.HashMap;
-import java.util.Map;
 
 import java.io.IOException;
 
@@ -56,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     TextRecognizer textRecognizer;
     String value;
     Handler handler = new Handler();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private static final String TAG = "MyActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,47 +182,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
-    public void addData(String kolekcja, String dokument){
-        Map<String, Object> city = new HashMap<>();
-        // city.put("name", "Rogoziniec");
-        // city.put("woj", "lubuskie");
-        // city.put("kraj", "polska");
-
-        db.collection(kolekcja).document(dokument)
-                .set(city)
-                .addOnSuccessListener(new OnSuccessListener<Void>(){
-                    @Override
-                    public void onSuccess(Void aVoid){
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
-
-    }
-
-    public void readData(String kolekcja, String dokument){
-        DocumentReference docRef = db.collection(kolekcja).document(dokument);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()){
-                        Log.d(TAG, "Pobrane dane: " + document.getData());
-                    } else {
-                        Log.d(TAG, "Nie znaleziono danych");
-                    }
-                } else {
-                    Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
-                }
-            }
-        });
-    }
-
 }
