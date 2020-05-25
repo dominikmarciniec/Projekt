@@ -23,6 +23,7 @@
         <activity android:name=".ActivitySzukaj" />
         <activity android:name=".ActivityDodaj" />
         <activity android:name=".ActivitySkanujBrakKodu" />
+        <activity android:name=".ActivitySkanujZnalezionoKod" />
 
     </application>
 
