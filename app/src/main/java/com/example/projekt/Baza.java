@@ -11,6 +11,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +27,6 @@ public class Baza {
         Map<String, Object> new_product = new HashMap<>();
         new_product.put("kod", kod);
         new_product.put("nadrzedne", nadrzedne);
-        // new_product.put("kraj", "polska");
 
         db.collection("products").document(nazwa)
                 .set(new_product)
@@ -59,6 +61,25 @@ public class Baza {
                     Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
                 }
             }
+        });
+    }
+
+    public void readDatazNazwa(String kod){
+        db.collection("products")
+                .whereEqualTo("kod", kod)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d(TAG,document.getData().toString());
+                    }
+                } else{
+                        Log.d(TAG, "Nie znaleziono danych");
+                    }
+            }
+
         });
     }
 }
