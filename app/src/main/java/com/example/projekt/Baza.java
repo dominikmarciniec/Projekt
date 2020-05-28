@@ -63,8 +63,8 @@ public class Baza {
             }
         });
     }
-    public DocumentSnapshot readDataNazwa(String kod){
-        final DocumentSnapshot document2 = null;
+    public String[] readDataNazwa(String kod){
+        final String[] pobraneDane = new String[2];
         DocumentReference docRef = db.collection("products").document(kod);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -72,12 +72,14 @@ public class Baza {
                 if(task.isSuccessful()){
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()){
-                        Log.d(TAG, "Pobrane dane: " + document.getData());
+                        //Log.d(TAG, "Pobrane dane: " + document.get());
                         System.out.println("dupa123"+document.getData().toString());
-                        document2 = document;
+                        pobraneDane[0] = document.getString("nazwa");
+                        pobraneDane[1] = document.getString("nadrzedna");
                     } else {
                         Log.d(TAG, "Nie znaleziono danych");
                         System.out.println("eloelo");
+                        pobraneDane[0] = pobraneDane[1] = "0";
                     }
                 } else {
                     Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
@@ -86,7 +88,7 @@ public class Baza {
 
 
         });
-        return document2;
+        return pobraneDane;
     }
 
 
