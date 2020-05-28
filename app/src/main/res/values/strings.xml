@@ -2,8 +2,6 @@
     <string name="app_name">Projekt</string>
     <string name="dodaj_produkt">Dodaj produkt</string>
     <string name="wyszukaj_produkt">Wyszukaj produkt</string>
-    <string name="red_menu">Czerwone menu</string>
-    <string name="green_menu">Zielone menu</string>
     <string name="exit_menu">Zamknij </string>
 
 </resources>
