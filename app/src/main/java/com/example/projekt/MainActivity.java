@@ -24,6 +24,7 @@ import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.io.IOException;
 
@@ -147,7 +148,8 @@ public class MainActivity extends AppCompatActivity {
     }
 public void cheak(String kod){
 
-        baza.readDataNazwa(kod);
+       DocumentSnapshot document= baza.readDataNazwa(kod);
+       System.out.println("cokolwiek"+document.getData().toString());
 
 
 }

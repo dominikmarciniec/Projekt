@@ -63,8 +63,8 @@ public class Baza {
             }
         });
     }
-    public DocumentSnapshot[] readDataNazwa(String kod){
-        final DocumentSnapshot[] document2 = new DocumentSnapshot[1];
+    public DocumentSnapshot readDataNazwa(String kod){
+        final DocumentSnapshot document2 = null;
         DocumentReference docRef = db.collection("products").document(kod);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -74,7 +74,7 @@ public class Baza {
                     if (document.exists()){
                         Log.d(TAG, "Pobrane dane: " + document.getData());
                         System.out.println("dupa123"+document.getData().toString());
-                        document2[0] = document;
+                        document2 = document;
                     } else {
                         Log.d(TAG, "Nie znaleziono danych");
                         System.out.println("eloelo");
