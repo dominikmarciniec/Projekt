@@ -63,7 +63,8 @@ public class Baza {
             }
         });
     }
-    public void readDatazNazwa(String kod){
+    public void readDataNazwa(String kod){
+
         db.collection("products")
                 .whereEqualTo("kod", kod)
                 .get()
@@ -73,9 +74,11 @@ public class Baza {
                         if(task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG,document.getData().toString());
+                                System.out.println("dupa123"+document.getData().toString());
                             }
                         } else{
                             Log.d(TAG, "Nie znaleziono danych");
+                            System.out.println("eloelo");
                         }
                     }
 

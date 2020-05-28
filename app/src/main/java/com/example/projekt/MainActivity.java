@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
+
                             Vibrator vibrator=(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
                             cameraSource.stop();
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     }
 public void cheak(String kod){
 
-        baza.readDataKod(kod);
+        baza.readDataNazwa(kod);
 
 
 }
