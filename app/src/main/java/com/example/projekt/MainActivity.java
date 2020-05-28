@@ -24,6 +24,7 @@ import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.io.IOException;
 
@@ -145,19 +146,40 @@ public class MainActivity extends AppCompatActivity {
         }); */
        // addData("miasta", "ROGO");
     }
-public void cheak(String kod){
+public void cheak(final String kod){
 
-        baza.readDataNazwa(kod);
+      baza.readDataNazwa(kod, new Baza.mycallback() {
+          @Override
+          public void onCallback(String[] value) {
+              System.out.println("Loaded " + value[0]);
+              if(value[0]!="0" && value[1]!="0"){
+                  changeActivityNotFound(kod);
+              }
+              else{
+                  changeActivityfound(value);
+              }
+          }
+      });
 
 
 }
 
-    public void changeActivity(String value) {
+    public void changeActivityNotFound(String value) {
 
 
             Intent intent = new Intent(this, ActivitySkanujBrakKodu.class);
-            intent.putExtra("value",value);
+            intent.putExtra("kod",value);
             startActivity(intent);
+
+
+    }
+    public void changeActivityfound(String[] value) {
+
+
+        Intent intent = new Intent(this, ActivitySkanujZnalezionoKod.class);
+        intent.putExtra("nazwa",value[0]);
+        intent.putExtra("nadrzedne",value[1]);
+        startActivity(intent);
 
 
     }
