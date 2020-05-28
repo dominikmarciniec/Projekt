@@ -151,8 +151,8 @@ public void cheak(final String kod){
       baza.readDataNazwa(kod, new Baza.mycallback() {
           @Override
           public void onCallback(String[] value) {
-              System.out.println("Loaded " + value[0]);
-              if(value[0]!="0" && value[1]!="0"){
+              System.out.println("Loaded " + value[0]+value[1]);
+              if(value[0]=="0" && value[1]=="0"){
                   changeActivityNotFound(kod);
               }
               else{
