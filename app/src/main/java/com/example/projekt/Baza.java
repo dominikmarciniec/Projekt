@@ -11,8 +11,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,8 +52,10 @@ public class Baza {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()){
                         Log.d(TAG, "Pobrane dane: " + document.getData());
+                        System.out.println("dupa123"+document.getData().toString());
                     } else {
                         Log.d(TAG, "Nie znaleziono danych");
+                        System.out.println("eloelo");
                     }
                 } else {
                     Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
@@ -63,26 +63,30 @@ public class Baza {
             }
         });
     }
-    public void readDataNazwa(String kod){
-
-        db.collection("products")
-                .whereEqualTo("kod", kod)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG,document.getData().toString());
-                                System.out.println("dupa123"+document.getData().toString());
-                            }
-                        } else{
-                            Log.d(TAG, "Nie znaleziono danych");
-                            System.out.println("eloelo");
-                        }
+    public DocumentSnapshot[] readDataNazwa(String kod){
+        final DocumentSnapshot[] document2 = new DocumentSnapshot[1];
+        DocumentReference docRef = db.collection("products").document(kod);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()){
+                        Log.d(TAG, "Pobrane dane: " + document.getData());
+                        System.out.println("dupa123"+document.getData().toString());
+                        document2[0] = document;
+                    } else {
+                        Log.d(TAG, "Nie znaleziono danych");
+                        System.out.println("eloelo");
                     }
+                } else {
+                    Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
+                }
+            }
 
-                });
+
+        });
+        return document2;
     }
 
 
