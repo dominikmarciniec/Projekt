@@ -24,11 +24,11 @@ public class Baza {
 
     public void addData(String nazwa, String kod, String nadrzedne){
         Map<String, Object> new_product = new HashMap<>();
-        new_product.put("kod", kod);
+        new_product.put("nazwa", nazwa);
         new_product.put("nadrzedne", nadrzedne);
         // new_product.put("kraj", "polska");
 
-        db.collection("products").document(nazwa)
+        db.collection("products").document(kod)
                 .set(new_product)
                 .addOnSuccessListener(new OnSuccessListener<Void>(){
                     @Override
