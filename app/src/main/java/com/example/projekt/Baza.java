@@ -64,9 +64,9 @@ public class Baza {
         });
     }
     public interface mycallback {
-        void onCallback(DocumentSnapshot value);
+        void onCallback(String[] value);
     }
-    public void readDataNazwa(String kod ,mycallback callback){
+    public void readDataNazwa(String kod , final mycallback callback){
 
         DocumentReference docRef = db.collection("products").document(kod);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -85,12 +85,12 @@ public class Baza {
                     } else {
                         Log.d(TAG, "Nie znaleziono danych");
                         System.out.println("eloelo");
-                        //pobraneDane[0] = pobraneDane[1] = "0";
+                        pobraneDane[0] = pobraneDane[1] = "0";
                     }
                 } else {
                     Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
                 }
-                callback(pobraneDane);
+            callback.onCallback(pobraneDane);
             }
 
 
