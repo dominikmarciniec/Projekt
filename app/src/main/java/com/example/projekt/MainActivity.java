@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     TextRecognizer textRecognizer;
     String value;
     Handler handler = new Handler();
+    Baza baza = new Baza();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
                             vibrator.vibrate(1000);
                             cameraSource.stop();
                             value=qrCodes.valueAt(0).displayValue;
-                            changeActivity(value);
+                          //  changeActivity(value);
+                           cheak(value);
                         }
                     });
 
@@ -142,9 +144,15 @@ public class MainActivity extends AppCompatActivity {
         }); */
        // addData("miasta", "ROGO");
     }
+public void cheak(String kod){
 
+        baza.readDataKod(kod);
+
+
+}
 
     public void changeActivity(String value) {
+
 
             Intent intent = new Intent(this, ActivitySkanujBrakKodu.class);
             intent.putExtra("value",value);
