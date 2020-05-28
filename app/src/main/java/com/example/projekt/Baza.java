@@ -63,32 +63,39 @@ public class Baza {
             }
         });
     }
-    public String[] readDataNazwa(String kod){
-        final String[] pobraneDane = new String[2];
+    public interface mycallback {
+        void onCallback(DocumentSnapshot value);
+    }
+    public void readDataNazwa(String kod ,mycallback callback){
+
         DocumentReference docRef = db.collection("products").document(kod);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                String[] pobraneDane = new String[2];
                 if(task.isSuccessful()){
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()){
                         //Log.d(TAG, "Pobrane dane: " + document.get());
                         System.out.println("dupa123"+document.getData().toString());
-                        pobraneDane[0] = document.getString("nazwa");
-                        pobraneDane[1] = document.getString("nadrzedna");
+                        pobraneDane[0] = document.getString("kod");
+                        pobraneDane[1] = document.getString("nadrzedne");
+
                     } else {
                         Log.d(TAG, "Nie znaleziono danych");
                         System.out.println("eloelo");
-                        pobraneDane[0] = pobraneDane[1] = "0";
+                        //pobraneDane[0] = pobraneDane[1] = "0";
                     }
                 } else {
                     Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
                 }
+                callback(pobraneDane);
             }
 
 
         });
-        return pobraneDane;
+
     }
 
 

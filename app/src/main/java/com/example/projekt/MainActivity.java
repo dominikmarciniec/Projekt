@@ -148,8 +148,12 @@ public class MainActivity extends AppCompatActivity {
     }
 public void cheak(String kod){
 
-       DocumentSnapshot document= baza.readDataNazwa(kod);
-       System.out.println("cokolwiek"+document.getData().toString());
+      baza.readDataNazwa(kod, new Baza.mycallback() {
+          @Override
+          public void onCallback(DocumentSnapshot value) {
+              System.out.println("Loaded "+value);
+          }
+      });
 
 
 }
