@@ -38,13 +38,16 @@ public class ActivityDodaj extends Activity {
 
         camera_open_id = (Button)findViewById(R.id.skanuj);
         click_image_id = (SurfaceView)findViewById(R.id.camerapreview2);
-
+        final android.view.ViewGroup.LayoutParams params = click_image_id.getLayoutParams();
+        params.height=132;
         camera_open_id.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v)
             {
+
                 click_image_id.setVisibility(View.VISIBLE);
+                click_image_id.setLayoutParams(params);
 
             }
         });
