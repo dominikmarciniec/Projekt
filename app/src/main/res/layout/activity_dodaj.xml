@@ -8,14 +8,14 @@
     <SurfaceView
 
         android:id="@+id/camerapreview2"
-        android:layout_width="225dp"
+        android:layout_width="300dp"
         android:layout_height="1dp"
         android:layout_below="@+id/skanuj"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="9dp"
-        android:layout_marginEnd="196dp"
+        android:layout_marginEnd="35dp"
         android:visibility="invisible"/>
 
 
@@ -33,14 +33,14 @@
 
     <EditText
         android:id="@+id/kod"
-        android:layout_width="wrap_content"
+        android:layout_width="176dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/camerapreview2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="122dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="198dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Kod produktu" />
@@ -52,9 +52,9 @@
         android:layout_below="@+id/camerapreview2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="225dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="223dp"
         android:text="Kod" />
 
     <EditText
@@ -114,14 +114,14 @@
 
     <Button
         android:id="@+id/dodaj"
-        android:layout_width="wrap_content"
+        android:layout_width="152dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/kod"
+        android:layout_below="@+id/camerapreview2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="121dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="169dp"
+        android:layout_marginStart="237dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="22dp"
         android:text="Dodaj" />
 
     <Button

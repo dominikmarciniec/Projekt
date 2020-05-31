@@ -45,7 +45,7 @@ public class ActivityDodaj extends Activity {
             @Override
             public void onClick(View v)
             {
-                params.height=params.height*152;
+                params.height=params.height*250;
                 click_image_id.setVisibility(View.VISIBLE);
                 click_image_id.setLayoutParams(params);
                 camera_open_id.setEnabled(false);
