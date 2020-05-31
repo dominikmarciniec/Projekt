@@ -36,7 +36,7 @@ public class ActivityDodaj extends Activity {
         Button dodaj = findViewById(R.id.dodaj);
         kodactivity.setText(kod);
 
-        camera_open_id = (Button)findViewById(R.id.dodaj);
+        camera_open_id = (Button)findViewById(R.id.skanuj);
         click_image_id = (SurfaceView)findViewById(R.id.camerapreview2);
 
         camera_open_id.setOnClickListener(new View.OnClickListener() {
@@ -44,16 +44,8 @@ public class ActivityDodaj extends Activity {
             @Override
             public void onClick(View v)
             {
+                click_image_id.setVisibility(View.VISIBLE);
 
-                // Create the camera_intent ACTION_IMAGE_CAPTURE
-                // it will open the camera for capture the image
-                Intent camera_intent
-                        = new Intent(MediaStore
-                        .ACTION_IMAGE_CAPTURE);
-
-                // Start the activity with camera_intent,
-                // and request pic id
-                startActivityForResult(camera_intent, pic_id);
             }
         });
 
@@ -70,16 +62,6 @@ public class ActivityDodaj extends Activity {
         });
 
     }
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == pic_id) {
-            // BitMap is data structure of image file
-            // which stor the image in memory
-            Bitmap photo = (Bitmap)data.getExtras().get("data");
 
-            // Set the image in imageview for display
-            click_image_id.setIM
-        }
-    }
 }
 
