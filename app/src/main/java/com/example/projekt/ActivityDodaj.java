@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -36,15 +37,17 @@ public class ActivityDodaj extends Activity {
         Button dodaj = findViewById(R.id.dodaj);
         kodactivity.setText(kod);
 
-        camera_open_id = (Button)findViewById(R.id.skanuj);
-        click_image_id = (SurfaceView)findViewById(R.id.camerapreview2);
+        camera_open_id = (Button) findViewById(R.id.dodaj);
+        click_image_id = (SurfaceView) findViewById(R.id.camerapreview2);
 
         camera_open_id.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
-                click_image_id.setVisibility(View.VISIBLE);
+            public void onClick(View v) {
+
+               click_image_id.set
+
+
 
             }
         });
@@ -54,14 +57,14 @@ public class ActivityDodaj extends Activity {
 
             @Override
             public void onClick(View view) {
-            nazwa=nazwactivity.getText().toString();
-            nadrzedny=nadrzednyactivity.getText().toString();
-            baza.addData(nazwa, kod, nadrzedny);
+                nazwa = nazwactivity.getText().toString();
+                nadrzedny = nadrzednyactivity.getText().toString();
+                baza.addData(nazwa, kod, nadrzedny);
 
             }
         });
-
     }
-
 }
+
+
 
