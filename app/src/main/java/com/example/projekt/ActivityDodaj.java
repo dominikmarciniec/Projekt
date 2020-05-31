@@ -1,6 +1,7 @@
 package com.example.projekt;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ public class ActivityDodaj extends Activity {
     String kod;
     String nazwa;
     String nadrzedny;
+    Context context= this.getBaseContext() ;
+
 
     Button camera_open_id;
     SurfaceView click_image_id;
@@ -39,16 +42,25 @@ public class ActivityDodaj extends Activity {
         camera_open_id = (Button)findViewById(R.id.skanuj);
         click_image_id = (SurfaceView)findViewById(R.id.camerapreview2);
         final android.view.ViewGroup.LayoutParams params = click_image_id.getLayoutParams();
+        final Skanuj skanuj =  new Skanuj(click_image_id ,this.getBaseContext());
+
+        skanuj.Camera(new Skanuj.Listener<Boolean>(){
+            public void on(Boolean result){
+                nadrzednyactivity.setText(skanuj.returnkod());
+            }
+        });
 
         camera_open_id.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v)
             {
+
                 params.height=params.height*250;
                 click_image_id.setVisibility(View.VISIBLE);
                 click_image_id.setLayoutParams(params);
                 camera_open_id.setEnabled(false);
+
 
             }
         });
@@ -61,11 +73,14 @@ public class ActivityDodaj extends Activity {
             nazwa=nazwactivity.getText().toString();
             nadrzedny=nadrzednyactivity.getText().toString();
             baza.addData(nazwa, kod, nadrzedny);
+                Intent intent2 = new Intent(context, MainActivity.class);
+                startActivity(intent2);
 
             }
         });
 
     }
+
 
 }
 

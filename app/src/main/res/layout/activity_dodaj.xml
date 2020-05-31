@@ -95,8 +95,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="123dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Opakowanie" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/tytul"

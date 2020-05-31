@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 public class ActivitySkanujZnalezionoKod extends Activity {
-String nazwa;
+String nazwa2;
 String polozenie;
 String kod;
 int x=0;
@@ -17,28 +17,39 @@ Baza baza =new Baza();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skanuj_znalezionokod);
-        TextView nazwa2 =findViewById(R.id.nazwa);
+        TextView nazwa =findViewById(R.id.nazwa);
+        TextView lokalizacja =findViewById(R.id.polozenie);
         Intent intent =getIntent();
-        nazwa=intent.getStringExtra("nazwa");
+        nazwa2=intent.getStringExtra("nazwa");
         kod=intent.getStringExtra("nadrzedne");
-        nazwa2.setText(nazwa);
+
         System.out.println("kod"+kod);
-        System.out.println("nazwa"+nazwa);
-       //while(x==0){
-       /* baza.readDataNazwa(kod, new Baza.mycallback() {
-            @Override
-            public void onCallback(String[] value) {
-                if( value[1]!="0"){
-                    x=1;
-                }
-                else{
-                    polozenie=value[0]+polozenie;
-                    kod=value[1];
+        System.out.println("nazwa"+nazwa2);
 
-                }
-            }
-        });
+       while(x==0){
+           if(kod==null){
+               x=1;
 
-   // }*/
+
+    }
+           /*else{
+               baza.readDataNazwa(kod, new Baza.mycallback() {
+                   @Override
+                   public void onCallback(String[] value) {
+                       System.out.println(value[1]);
+                       if( value[1]==""){
+                           x=1;
+                       }
+                       else{
+                           polozenie=value[0]+polozenie;
+                           kod=value[1];
+
+                       }
+                   }
+               });
+           }*/
+       }
+        nazwa.setText(nazwa2);
+        lokalizacja.setText(polozenie);
     }
 }

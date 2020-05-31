@@ -10,7 +10,7 @@ import android.os.Vibrator;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.TextView;
+
 
 import androidx.core.app.ActivityCompat;
 
@@ -162,6 +162,9 @@ System.out.println("check"+kod);
         });
 
 
+    }
+    public String returnkod(){
+        return kod;
     }
 
     public void changeActivityNotFound(String kod) {

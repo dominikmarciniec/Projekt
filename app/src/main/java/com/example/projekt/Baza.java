@@ -79,8 +79,9 @@ public class Baza {
                     if (document.exists()){
                         //Log.d(TAG, "Pobrane dane: " + document.get());
                         System.out.println("dupa123"+document.getData().toString());
-                        pobraneDane[0] = document.getString("kod");
+                        pobraneDane[0] = document.getString("nazwa");
                         pobraneDane[1] = document.getString("nadrzedne");
+                        System.out.println(pobraneDane[0]);
 
                     } else {
                         Log.d(TAG, "Nie znaleziono danych");
