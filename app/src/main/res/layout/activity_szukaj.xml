@@ -6,8 +6,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="184dp"
-        android:layout_height="108dp"
+        android:layout_width="117dp"
+        android:layout_height="wrap_content"
         android:text="Szukaj"
         android:textSize="5mm" />
 </LinearLayout>

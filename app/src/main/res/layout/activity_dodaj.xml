@@ -4,6 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <SurfaceView
+
+        android:id="@+id/camerapreview2"
+        android:layout_width="181dp"
+        android:layout_height="135dp"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="196dp" />
+
     <TextView
         android:id="@+id/nadrzedny_opis"
         android:layout_width="wrap_content"
@@ -20,12 +32,12 @@
         android:id="@+id/kod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nadrzedny"
+        android:layout_below="@+id/camerapreview2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="125dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="122dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Kod produktu" />
@@ -34,14 +46,13 @@
         android:id="@+id/kod_opis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/camerapreview2"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="391dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="225dp"
-        android:text="Kod
-" />
+        android:text="Kod" />
 
     <EditText
         android:id="@+id/nazwa"
@@ -95,7 +106,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="145dp"
         android:layout_marginEnd="145dp"
-        android:layout_marginBottom="89dp"
+        android:layout_marginBottom="60dp"
         android:text="Dodaj" />
 
     <TextView
@@ -118,8 +129,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginEnd="151dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="307dp"
+        android:layout_marginEnd="152dp"
         android:text="Skanuj kod produktu" />
 </RelativeLayout>
