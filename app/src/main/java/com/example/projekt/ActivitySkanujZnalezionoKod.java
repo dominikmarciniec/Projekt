@@ -20,23 +20,25 @@ Baza baza =new Baza();
         TextView nazwa2 =findViewById(R.id.nazwa);
         Intent intent =getIntent();
         nazwa=intent.getStringExtra("nazwa");
-        kod=intent.getStringExtra("polozenie");
+        kod=intent.getStringExtra("nadrzedne");
         nazwa2.setText(nazwa);
-       while(x==0){
-        baza.readDataNazwa(kod, new Baza.mycallback() {
+        System.out.println("kod"+kod);
+        System.out.println("nazwa"+nazwa);
+       //while(x==0){
+       /* baza.readDataNazwa(kod, new Baza.mycallback() {
             @Override
             public void onCallback(String[] value) {
-                //if( value[1]!="0"){
-                 //   x=1;
-               // }
-                //else{
-                //    polozenie=value[0]+polozenie;
-                //    kod=value[1];
+                if( value[1]!="0"){
+                    x=1;
+                }
+                else{
+                    polozenie=value[0]+polozenie;
+                    kod=value[1];
 
-               // }
+                }
             }
         });
 
-    }
+   // }*/
     }
 }
