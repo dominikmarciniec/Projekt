@@ -84,6 +84,8 @@
         android:text="Dodawanie produktu"
         android:textSize="30dp" />
 
+
+
     <Button
         android:id="@+id/dodaj"
         android:layout_width="wrap_content"

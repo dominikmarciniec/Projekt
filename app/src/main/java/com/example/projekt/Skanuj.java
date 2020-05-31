@@ -28,14 +28,17 @@ public class Skanuj  {
     private SurfaceView surfaceView;
     private CameraSource cameraSource;
 
-    private String value;
+    private String kod;
     private Handler handler = new Handler();
     private Baza baza = new Baza();
     Skanuj(SurfaceView surfaceView, Context context){
         this.surfaceView=surfaceView;
         this.context=context;
     }
-  public void Camera(){
+    public interface Listener<T> {
+        void on(T arg);
+    }
+  public void Camera( final Listener<Boolean> result){
 
 
       BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).setBarcodeFormats(Barcode.CODE_128 | Barcode.QR_CODE).build();
@@ -92,11 +95,15 @@ public class Skanuj  {
                             Vibrator vibrator=(Vibrator)context.getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
                             cameraSource.stop();
-                            value=qrCodes.valueAt(0).displayValue;
+                           kod=qrCodes.valueAt(0).displayValue;
+                           result.on(true);
                             //  changeActivity(value);
-                            check(value);
+                           // check(value);
+
                         }
-                    });
+                    }
+
+                    );
 
                 }
 
@@ -136,10 +143,11 @@ public class Skanuj  {
                 }
             }
         }); */
-        // addData("miasta", "ROGO");
-    }
-    public void check(final String kod){
 
+    }
+
+    public void check(){
+System.out.println("check"+kod);
         baza.readDataNazwa(kod, new Baza.mycallback() {
             @Override
             public void onCallback(String[] value) {
@@ -156,11 +164,11 @@ public class Skanuj  {
 
     }
 
-    public void changeActivityNotFound(String value) {
+    public void changeActivityNotFound(String kod) {
 
 
         Intent intent = new Intent(context, ActivitySkanujBrakKodu.class);
-        intent.putExtra("kod",value);
+        intent.putExtra("kod",kod);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
 

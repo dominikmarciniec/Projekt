@@ -12,9 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import android.view.SurfaceView;
-
-
-
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -27,8 +25,17 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         surfaceView=findViewById(R.id.camerapreview);
 
-        Skanuj skanuj =  new Skanuj(surfaceView ,this.getBaseContext());
-        skanuj.Camera();
+        final Skanuj skanuj =  new Skanuj(surfaceView ,this.getBaseContext());
+
+
+            skanuj.Camera(new Skanuj.Listener<Boolean>(){
+                public void on(Boolean result){
+                   if(result==true){
+                       skanuj.check();
+                   }
+                }
+            });
+
 
     }
 

@@ -18,7 +18,7 @@ public class ActivitySkanujBrakKodu extends Activity {
         setContentView(R.layout.activity_skanuj_brakkodu);
         TextView komunikat =findViewById(R.id.komunikat);
         Intent intent =getIntent();
-        kod=intent.getStringExtra("value");
+        kod=intent.getStringExtra("kod");
 
         komunikat.setText("kod"+kod);
 
