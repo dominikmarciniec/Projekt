@@ -8,7 +8,7 @@
     <SurfaceView
 
         android:id="@+id/camerapreview2"
-        android:layout_width="181dp"
+        android:layout_width="225dp"
         android:layout_height="1dp"
         android:layout_below="@+id/skanuj"
         android:layout_alignParentStart="true"
@@ -23,12 +23,12 @@
         android:id="@+id/nadrzedny_opis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/nazwa"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="229dp"
-        android:layout_marginEnd="250dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="238dp"
         android:text="Opakowanie" />
 
     <EditText
@@ -64,12 +64,25 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="154dp"
-        android:layout_marginEnd="125dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="109dp"
+        android:layout_marginEnd="121dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Nazwa produktu" />
+
+    <TextView
+        android:id="@+id/nazwa_opis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="236dp"
+        android:text="Nazwa
+" />
 
     <EditText
         android:id="@+id/nadrzedny"
@@ -78,9 +91,9 @@
         android:layout_below="@+id/nazwa"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="125dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="123dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Opakowanie" />
@@ -99,41 +112,27 @@
         android:textSize="30dp" />
 
 
-
     <Button
         android:id="@+id/dodaj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/kod"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="145dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="169dp"
         android:text="Dodaj" />
-
-    <TextView
-        android:id="@+id/nazwa_opis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="133dp"
-        android:layout_marginEnd="249dp"
-        android:text="Nazwa
-" />
 
     <Button
         android:id="@+id/skanuj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/nadrzedny"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="33dp"
-        android:layout_marginTop="307dp"
-        android:layout_marginEnd="152dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="151dp"
         android:text="Skanuj kod produktu" />
 </RelativeLayout>
