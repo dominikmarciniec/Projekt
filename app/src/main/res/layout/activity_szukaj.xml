@@ -5,44 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".ActivitySzukaj">
 
+    <TextView
+        android:id="@+id/wyniki"
+        android:layout_width="408dp"
+        android:layout_height="304dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="3dp"
+        android:text="Wyniki:" />
+
     <EditText
-        android:id="@+id/szukaj_tekst"
+        android:id="@+id/nazwa_szukaj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="79dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="606dp"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="97dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="Nazwa" />
 
     <Button
-        android:id="@+id/szukaj_btn"
+        android:id="@+id/szukaj_wyszukiwanie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/nazwa_szukaj"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="493dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="165dp"
         android:text="Szukaj" />
-
-    <TextView
-        android:id="@+id/szukaj_wyniki"
-        android:layout_width="415dp"
-        android:layout_height="475dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="-5dp"
-        android:layout_marginBottom="0dp" />
 </RelativeLayout>

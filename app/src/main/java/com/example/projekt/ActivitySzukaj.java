@@ -16,21 +16,21 @@ public class ActivitySzukaj extends Activity {
     Baza baza = new Baza();
 
     TextView wyniki;
-
+    EditText wyszukaj;
+    Button szukaj_wyszukiwanie;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_szukaj);
 
-        Button szukaj_btn = findViewById(R.id.szukaj_btn);
-        wyniki = findViewById(R.id.szukaj_wyniki);
-        final EditText szukaj_tekst = findViewById(R.id.szukaj_tekst);
+        wyniki = findViewById(R.id.wyniki);
+        wyszukaj = findViewById(R.id.nazwa_szukaj);
 
-        szukaj_btn.setOnClickListener(new View.OnClickListener() {
+        /*szukaj_wyszukiwanie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               String szukaj = szukaj_tekst.getText().toString();
+               String szukaj = wyszukaj.getText().toString();
 
                baza.readDataNazwa(szukaj, new Baza.mycallback() {
                    @Override
@@ -39,6 +39,6 @@ public class ActivitySzukaj extends Activity {
                    }
                });
             }
-        });
+        });*/
     }
 }
