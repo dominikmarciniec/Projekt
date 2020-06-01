@@ -148,7 +148,7 @@ public class Skanuj  {
 
     public void check(){
 System.out.println("check"+kod);
-        baza.readDataNazwa(kod, new Baza.mycallback() {
+        baza.readDataKod(kod, new Baza.mycallback() {
             @Override
             public void onCallback(String[] value) {
                 System.out.println("Loaded " + value[0]+value[1]);

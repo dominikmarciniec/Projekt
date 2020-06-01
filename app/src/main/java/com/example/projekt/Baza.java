@@ -11,6 +11,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,7 +69,7 @@ public class Baza {
     public interface mycallback {
         void onCallback(String[] value);
     }
-    public void readDataNazwa(String kod , final mycallback callback){
+    public void readDataKod(String kod , final mycallback callback){
 
         DocumentReference docRef = db.collection("products").document(kod);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -92,6 +95,33 @@ public class Baza {
                     Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
                 }
             callback.onCallback(pobraneDane);
+            }
+        });
+    }
+
+    public void readDataNazwa(String nazwa , final mycallback callback){
+
+        db.collection("products")
+                .whereEqualTo("nazwa", nazwa)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                String[] pobraneDane = new String[2];
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        //Log.d(TAG, "Pobrane dane: " + document.get());
+                        System.out.println("dupa123" + document.getData().toString());
+                        pobraneDane[0] = document.getString("nazwa");
+                        pobraneDane[1] = document.getString("nadrzedne");
+                        System.out.println(pobraneDane[0]);
+
+                    }
+                } else {
+                    Log.d(TAG, "Coś poszło nie tak :/ ", task.getException());
+                }
+                callback.onCallback(pobraneDane);
             }
         });
     }

@@ -33,7 +33,7 @@ Baza baza =new Baza();
         else{
             System.out.println(" nie jest empty");
 
-    baza.readDataNazwa(kod, new Baza.mycallback() {
+    baza.readDataKod(kod, new Baza.mycallback() {
         @Override
         public void onCallback(String[] value) {
             System.out.println(value[1]);
