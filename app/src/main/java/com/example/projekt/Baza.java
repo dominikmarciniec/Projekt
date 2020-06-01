@@ -93,12 +93,8 @@ public class Baza {
                 }
             callback.onCallback(pobraneDane);
             }
-
-
         });
-
     }
-
 
 
 }

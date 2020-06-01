@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/szukaj_tekst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="606dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <Button
+        android:id="@+id/szukaj_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="493dp"
+        android:text="Szukaj" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="117dp"
-        android:layout_height="wrap_content"
-        android:text="Szukaj"
-        android:textSize="5mm" />
-</LinearLayout>
+        android:id="@+id/szukaj_wyniki"
+        android:layout_width="415dp"
+        android:layout_height="475dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="-5dp"
+        android:layout_marginBottom="0dp" />
+</RelativeLayout>
