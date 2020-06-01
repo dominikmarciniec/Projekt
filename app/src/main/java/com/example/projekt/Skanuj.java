@@ -183,6 +183,7 @@ System.out.println("check"+kod);
         Intent intent = new Intent(context, ActivitySkanujZnalezionoKod.class);
         intent.putExtra("nazwa",value[0]);
         intent.putExtra("nadrzedne",value[1]);
+        System.out.println(value[1]+"value 1");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
 
