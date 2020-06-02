@@ -19,7 +19,7 @@ public class ActivitySzukaj extends Activity {
 
     TextView wyniki;
     EditText wyszukaj;
-    Button szukaj_btn;
+    //Button szukaj_btn;
     ArrayList<String> znalezione = new ArrayList<String>();
 
 
@@ -30,42 +30,54 @@ public class ActivitySzukaj extends Activity {
 
         wyniki = findViewById(R.id.wyniki);
         wyszukaj = findViewById(R.id.nazwa_szukaj);
-        szukaj_btn = findViewById(R.id.szukaj_btn);
+        //szukaj_btn = findViewById(R.id.szukaj_btn);
 
         /*szukaj_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)*/
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                String szukaj = wyszukaj.getText().toString();
 
-                baza.readDataNazwa(szukaj, new Baza.mycallback() {
-                    @Override
-                    public void onCallback(String[] value) {
-                        znalezione.add(value[0]);
-                        znalezione.add(value[1]);
-                    }
-                });
+            new Timer().scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    if (wyszukaj.getText().toString().length() > 0) {
+                        String szukaj = wyszukaj.getText().toString();
 
-                baza.readDataKod(szukaj, new Baza.mycallback() {
-                    @Override
-                    public void onCallback(String[] value) {
-                        znalezione.add(value[0]);
-                        znalezione.add(value[1]);
-                    }
-                });
-                wyniki.setText("Wyniki wyszukiwania:\n");
-                int lp = 1;
-                for(int i=0; i<znalezione.size(); i+=2) {
-                    if(znalezione.get(i) != null && znalezione.get(i) != "0") {
-                        wyniki.setText(wyniki.getText().toString() + lp + ". Nazwa: " + znalezione.get(i) + ", nadrzedny: " + znalezione.get(i + 1) + "\n");
-                        ++lp;
-                    }
+                        baza.readDataNazwa(szukaj, new Baza.mycallback() {
+                            @Override
+                            public void onCallback(String[] value) {
+                                znalezione.add(value[0]);
+                                znalezione.add(value[1]);
+                            }
+                        });
+
+                        baza.readDataKod(szukaj, new Baza.mycallback() {
+                            @Override
+                            public void onCallback(String[] value) {
+                                znalezione.add(value[0]);
+                                znalezione.add(value[1]);
+                            }
+                        });
+                        if(znalezione.size() > 0 && znalezione.get(0) != null) {
+                            wyniki.setText("Wyniki wyszukiwania:\n");
+                            int lp = 1;
+                            for (int i = 0; i < znalezione.size(); i += 2) {
+                                if (znalezione.get(i) != null && znalezione.get(i) != "0") {
+                                    if (znalezione.get(i + 1) != "") {
+                                        wyniki.setText(wyniki.getText().toString() + lp + ". Nazwa: " + znalezione.get(i) + ", nadrzedny: " + znalezione.get(i + 1) + "\n");
+                                    } else {
+                                        wyniki.setText(wyniki.getText().toString() + lp + ". Nazwa: " + znalezione.get(i) + ", produkt główny" + "\n");
+                                    }
+                                    ++lp;
+                                }
+                            }
+                        } else {
+                            wyniki.setText("Brak wyników wyszukiwania");
+                        }
+                        znalezione.clear();
                 }
-                znalezione.clear();
-            }
-        },0,1000);
+                }
+            }, 0, 1000);
+
         };
     }
 
