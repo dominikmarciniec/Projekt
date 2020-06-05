@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity{
 
         final Skanuj skanuj =  new Skanuj(surfaceView ,this.getBaseContext());
 
-
             skanuj.Camera(new Skanuj.Listener<Boolean>(){
                 public void on(Boolean result){
                    if(result==true){
@@ -35,8 +34,6 @@ public class MainActivity extends AppCompatActivity{
                    }
                 }
             });
-
-
     }
 
     @Override

@@ -2,13 +2,9 @@ package com.example.projekt;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,7 +15,7 @@ public class ActivitySzukaj extends Activity {
 
     TextView wyniki;
     EditText wyszukaj;
-    //Button szukaj_btn;
+
     ArrayList<String> znalezione = new ArrayList<String>();
 
 
@@ -30,18 +26,12 @@ public class ActivitySzukaj extends Activity {
 
         wyniki = findViewById(R.id.wyniki);
         wyszukaj = findViewById(R.id.nazwa_szukaj);
-        //szukaj_btn = findViewById(R.id.szukaj_btn);
-
-        /*szukaj_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)*/
 
             new Timer().scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
                     if (wyszukaj.getText().toString().length() > 0) {
                         String szukaj = wyszukaj.getText().toString();
-
                         baza.readDataNazwa(szukaj, new Baza.mycallback() {
                             @Override
                             public void onCallback(String[] value) {

@@ -19,6 +19,7 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.MultiDetector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
@@ -78,39 +79,27 @@ public class Skanuj  {
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
             public void release() {
-
             }
-
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
-
                 final SparseArray<Barcode> qrCodes=detections.getDetectedItems();
-
                 if(qrCodes.size()!=0)
                 {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-
                             Vibrator vibrator=(Vibrator)context.getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
                             cameraSource.stop();
                            kod=qrCodes.valueAt(0).displayValue;
                            result.on(true);
-                            //  changeActivity(value);
-                           // check(value);
-
                         }
                     }
-
                     );
-
                 }
-
-
             }
         });
-      /* textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
+       textRecognizer.setProcessor(new Detector.Processor<TextBlock>() {
             @Override
             public void release() {
             }
@@ -134,15 +123,16 @@ public class Skanuj  {
                             }
                             String number = stringBuilder.toString().replaceAll("\\D+","");
                             if(number.matches("^[0-9]{3,12}$")){
-                                Vibrator vibrator=(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                                Vibrator vibrator=(Vibrator)context.getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                                 vibrator.vibrate(1000);
-                                changeActivity(number);
+                                cameraSource.stop();
+                                result.on(true);
                             }
                         }
                     });
                 }
             }
-        }); */
+        });
 
     }
 
@@ -151,7 +141,6 @@ System.out.println("check"+kod);
         baza.readDataKod(kod, new Baza.mycallback() {
             @Override
             public void onCallback(String[] value) {
-                System.out.println("Loaded " + value[0]+value[1]);
                 if(value[0]=="0" && value[1]=="0"){
                     changeActivityNotFound(kod);
                 }

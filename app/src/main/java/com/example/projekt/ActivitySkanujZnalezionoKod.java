@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 
 public class ActivitySkanujZnalezionoKod extends Activity {
@@ -23,15 +22,11 @@ Baza baza =new Baza();
         nazwa2=intent.getStringExtra("nazwa");
         kod=intent.getStringExtra("nadrzedne");
         polozenie=nazwa2;
-        System.out.println("kod"+kod);
-        System.out.println("nazwa"+nazwa2);
         if(kod.isEmpty()){
-    System.out.println("jest empty");
             lokalizacja.setText(nazwa2);
-
         }
         else{
-            System.out.println(" nie jest empty");
+
 
     baza.readDataKod(kod, new Baza.mycallback() {
         @Override
@@ -52,9 +47,6 @@ Baza baza =new Baza();
     });
 
 }
-
-
-
 
         nazwa.setText(nazwa2);
 
